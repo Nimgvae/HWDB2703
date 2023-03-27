@@ -1,0 +1,18 @@
+create table if not exists reactions(
+	reaction_id integer primary key auto_increment,
+    user_id integer,
+    value integer check(value between 1 and 5),
+    created_at datetime default current_timestamp,
+    stream_id integer,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (stream_id) REFERENCES streams(stream_id)
+);
+
+CREATE TABLE if not exists donations (
+donations_id integer primary key auto_increment,
+user_id integer,
+amount_EUR DECIMAL(10,2) NOT NULL,
+message TEXT,
+created_at datetime default current_timestamp,
+FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
